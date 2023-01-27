@@ -12,6 +12,15 @@ jobs:
           echo "date1=$(date +'%Y-%m-%d' --date='+9 hour')" >> $GITHUB_OUTPUT
           echo "date2=$(date +'%Y%m%d' --date='+9 hour')" >> $GITHUB_OUTPUT
         id: date-infos
+      - name: Replace release note
+        env:
+          GITHUB_EMOJI_PATH: 'https\:\/\/github.githubassets.com\/images\/icons\/emoji\/unicode'
+        run: |
+          sed -i "s/:star:/\!\[star\]\($GITHUB_EMOJI_PATH\/2b50.png\)/g" ./docs/v22.1.0.md
+          sed -i "s/:lady_beetle:/\!\[lady_beetle\]\($GITHUB_EMOJI_PATH\/1f41e.png\)/g" ./docs/v22.1.0.md
+          sed -i "s/:notebook_with_decorative_cover:/\!\[notebook_with_decorative_cover\]\($GITHUB_EMOJI_PATH\/1f4d4.png\)/g" ./docs/v22.1.0.md
+          sed -i "s/:hammer:/\!\[hammer\]\($GITHUB_EMOJI_PATH\/1f528.png\)/g" ./docs/v22.1.0.md
+          sed -i "s/:lock:/\!\[lock\]\($GITHUB_EMOJI_PATH\/1f512.png\)/g" ./docs/v22.1.0.md
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
