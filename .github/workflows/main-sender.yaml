@@ -22,6 +22,7 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: "[ Release ] T3SmartSCM v22.1.0 버전 (Build ID : ${{ steps.date-infos.outputs.date1 }})"
           to: kyongho_lee@zionex.com,bluefish205@gmail.com
+          from: Kyongho Lee <kyongho_lee@zionex.com>
           html_body: file://docs/v22.0.0.md
           ignore_cert: true
           convert_markdown: true
