@@ -24,7 +24,6 @@ jobs:
           to: kyongho_lee@zionex.com,bluefish205@gmail.com
           from: Kyongho Lee <kyongho_lee@zionex.com>
           html_body: file://docs/v22.0.0.md
-          ignore_cert: true
           convert_markdown: true
           attachments: ./docs/v22.0.0.md
           priority: low
