@@ -14,13 +14,14 @@ jobs:
         id: date-infos
       - name: Replace release note
         env:
-          GITHUB_EMOJI_PATH: 'https\:\/\/github.githubassets.com\/images\/icons\/emoji\/unicode'
+          IMG_TAG_PREV: '\<img height\=\"20\" width=\"20\" src\=\"https\:\/\/github.githubassets.com\/images\/icons\/emoji\/unicode\/'
+          IMG_TAG_NEXT: '.png\"\>'
         run: |
-          sed -i "s/:star:/\!\[star\]\($GITHUB_EMOJI_PATH\/2b50.png\)/g" ./docs/v22.1.0.md
-          sed -i "s/:lady_beetle:/\!\[lady_beetle\]\($GITHUB_EMOJI_PATH\/1f41e.png\)/g" ./docs/v22.1.0.md
-          sed -i "s/:notebook_with_decorative_cover:/\!\[notebook_with_decorative_cover\]\($GITHUB_EMOJI_PATH\/1f4d4.png\)/g" ./docs/v22.1.0.md
-          sed -i "s/:hammer:/\!\[hammer\]\($GITHUB_EMOJI_PATH\/1f528.png\)/g" ./docs/v22.1.0.md
-          sed -i "s/:lock:/\!\[lock\]\($GITHUB_EMOJI_PATH\/1f512.png\)/g" ./docs/v22.1.0.md
+          sed -i "s/:star:/$IMG_TAG_PREV2b50$IMG_TAG_NEXT/g" ./docs/v22.1.0.md
+          sed -i "s/:lady_beetle:/$IMG_TAG_PREV1f41e$IMG_TAG_NEXT/g" ./docs/v22.1.0.md
+          sed -i "s/:notebook_with_decorative_cover:/$IMG_TAG_PREV1f4d4$IMG_TAG_NEXT/g" ./docs/v22.1.0.md
+          sed -i "s/:hammer:/$IMG_TAG_PREV1f528$IMG_TAG_NEXT/g" ./docs/v22.1.0.md
+          sed -i "s/:lock:/$IMG_TAG_PREV1f512$IMG_TAG_NEXT/g" ./docs/v22.1.0.md
           cat ./docs/v22.1.0.md
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
