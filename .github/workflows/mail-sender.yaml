@@ -1,0 +1,47 @@
+name: Mail Sender
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get current date infos
+        run: echo "date=$(date +'%Y-%m-%d' --date='+9 hour')" >> $GITHUB_OUTPUT
+        id: date-infos
+      - name: Replace release note
+        env:
+          PRODUCT_NAME: 'T³SmartSCM'
+          VERSION: '22.1.0'
+        run: |
+          sed -i "s/:star: //g" ./docs/v$VERSION.md
+          sed -i "s/:lady_beetle: //g" ./docs/v$VERSION.md
+          sed -i "s/:notebook_with_decorative_cover: //g" ./docs/v$VERSION.md
+          sed -i "s/:hammer: //g" ./docs/v$VERSION.md
+          sed -i "s/:lock: //g" ./docs/v$VERSION.md
+          echo -e "# $PRODUCT_NAME v$VERSION Release (${{ steps.date-infos.outputs.date }})\n" >> mail-header.md
+          echo -e "$PRODUCT_NAME 팀과 DX 팀에서 $PRODUCT_NAME v$VERSION 버전을 릴리스합니다." >> mail-header.md
+          echo -e "다음 링크를 클릭해서 릴리스 노트 및 배포 파일을 확인하시기 바랍니다." >> mail-header.md
+          echo -e "배포 파일 접근시에는 본사 VPN 접속 후 진행하면 됩니다.\n" >> mail-header.md
+          echo -e "- [$PRODUCT_NAME Release Notes Link](https://github.com/zionex/t3series/releases)" >> mail-header.md
+          echo -e "- [$PRODUCT_NAME Download Link](https://release.zionex.com/T3SmartSCM/v$VERSION)\n" >> mail-header.md
+          cat mail-header.md ./docs/v$VERSION.md > mail-content.md
+      - name: Send mail
+        env:
+          PRODUCT_NAME: 'T³SmartSCM'
+          VERSION: '22.1.0'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "[ Release ] $PRODUCT_NAME v$VERSION 버전 (Build ID : ${{ steps.date-infos.outputs.date }})"
+          to: kyongho_lee@zionex.com,bluefish205@gmail.com
+          from: Kyongho Lee <kyongho_lee@zionex.com>
+          html_body: file://mail-content.md
+          convert_markdown: true
+          attachments: ./docs/v$VERSION.md
+          priority: low
