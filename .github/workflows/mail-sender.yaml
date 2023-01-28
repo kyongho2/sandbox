@@ -19,18 +19,18 @@ jobs:
         id: date-infos
       - name: Replace release note
         run: |
-          sed -i "s/:star: //g" ./docs/v$VERSION.md
-          sed -i "s/:lady_beetle: //g" ./docs/v$VERSION.md
-          sed -i "s/:notebook_with_decorative_cover: //g" ./docs/v$VERSION.md
-          sed -i "s/:hammer: //g" ./docs/v$VERSION.md
-          sed -i "s/:lock: //g" ./docs/v$VERSION.md
+          sed -i "s/:star: //g" ./docs/v${{ steps.project.outputs.version }}.md
+          sed -i "s/:lady_beetle: //g" ./docs/v${{ steps.project.outputs.version }}.md
+          sed -i "s/:notebook_with_decorative_cover: //g" ./docs/v${{ steps.project.outputs.version }}.md
+          sed -i "s/:hammer: //g" ./docs/v${{ steps.project.outputs.version }}.md
+          sed -i "s/:lock: //g" ./docs/v${{ steps.project.outputs.version }}.md
           echo -e "# ${{ env.product-name }} v${{ steps.project.outputs.version }} Release (${{ steps.date-infos.outputs.date }})\n" >> mail-header.md
           echo -e "${{ env.product-name }} 팀과 DX 팀에서 ${{ env.product-name }} v${{ steps.project.outputs.version }} 버전을 릴리스합니다." >> mail-header.md
           echo -e "다음 링크를 클릭해서 릴리스 노트 및 배포 파일을 확인하시기 바랍니다." >> mail-header.md
           echo -e "배포 파일 접근시에는 본사 VPN 접속 후 진행하면 됩니다.\n" >> mail-header.md
           echo -e "- [${{ env.product-name }} Release Notes Link](https://github.com/zionex/t3series/releases)" >> mail-header.md
           echo -e "- [${{ env.product-name }} Download Link](https://release.zionex.com/T3SmartSCM/v${{ steps.project.outputs.version }})\n" >> mail-header.md
-          cat mail-header.md ./docs/v$VERSION.md > mail-content.md
+          cat mail-header.md ./docs/v${{ steps.project.outputs.version }}.md > mail-content.md
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
@@ -44,5 +44,5 @@ jobs:
           from: Kyongho Lee <kyongho_lee@zionex.com>
           html_body: file://mail-content.md
           convert_markdown: true
-          attachments: ./docs/v$VERSION.md
+          attachments: ./docs/v${{ steps.project.outputs.version }}.md
           priority: low
