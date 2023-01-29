@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  send-mail:
     runs-on: ubuntu-latest
     env:
       product-name: 'T³SmartSCM'
