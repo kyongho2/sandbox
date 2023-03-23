@@ -1,0 +1,21 @@
+
+name: Delete Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Delete release
+        uses: meta205/actions-delete-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          owner: kyongho2
+          repo: sandbox
+          release-name: v1.0.0
