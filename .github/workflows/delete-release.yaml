@@ -16,6 +16,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          owner: kyongho2
-          repo: sandbox
           release-name: v1.0.0
