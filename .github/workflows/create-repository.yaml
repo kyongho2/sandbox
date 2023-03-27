@@ -17,4 +17,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ github.event.inputs.repo-name }}
+          repo-name: ${{ github.event.inputs.repo-name }}
+          repo-private: false 
