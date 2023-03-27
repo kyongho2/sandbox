@@ -3,9 +3,9 @@ name: Create Project
 on:
   workflow_dispatch:
     inputs:
-      project-code:
+      repo-name:
         required: true
-        description: Please enter your project code
+        description: Please enter the repository name
 
 jobs:
   create-project:
@@ -17,4 +17,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: t3series-${{ github.event.inputs.project-code }}
+          name: ${{ github.event.inputs.repo-name }}
