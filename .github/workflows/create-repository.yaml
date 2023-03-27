@@ -1,0 +1,20 @@
+name: Create Project
+
+on:
+  workflow_dispatch:
+    inputs:
+      project-code:
+        required: true
+        description: Please enter your project code
+
+jobs:
+  create-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create project repo
+        uses: meta205/actions-create-repository@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: t3series-${{ github.event.inputs.project-code }}
