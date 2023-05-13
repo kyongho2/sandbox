@@ -1,0 +1,31 @@
+name: Delete And Create Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set release info
+        run: |
+          echo "version=1.0.0" >> $GITHUB_OUTPUT
+          echo "date=$(date +'%Y-%m-%d' --date='+9 hour')" >> $GITHUB_OUTPUT
+        id: release-info
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Delete release
+        uses: meta205/actions-delete-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag-name: ${{ steps.release-info.outputs.date }}
+      - name: Create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.release-info.outputs.date }}
+          release_name: v${{ steps.release-info.outputs.version }}
+          body: v${{ steps.release-info.outputs.version }} Release - ${{ steps.release-info.outputs.date }}
