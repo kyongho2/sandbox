@@ -20,9 +20,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag-name: ${{ steps.release-info.outputs.date }}
+          tag_name: ${{ steps.release-info.outputs.date }}
       - name: Create release
-        uses: actions/create-release@v1
+        uses: meta205/actions-create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
