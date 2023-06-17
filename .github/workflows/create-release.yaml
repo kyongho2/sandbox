@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag-name: ${{ steps.release-info.outputs.date }}
-          release-name: v${{ steps.release-info.outputs.version }}
-          body-path: ./docs/v${{ steps.release-info.outputs.version }}.md
+          tag_name: ${{ steps.release-info.outputs.date }}
+          release_name: v${{ steps.release-info.outputs.version }}
+          body_path: ./docs/v${{ steps.release-info.outputs.version }}.md
           draft: true
