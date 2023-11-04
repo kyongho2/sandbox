@@ -15,6 +15,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          owner: kyongho2
           package-name: sandbox.sandbox
           package-version: 1.0.0
           package-type: maven
