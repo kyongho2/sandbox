@@ -15,7 +15,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          owner: kyongho2
-          package-name: sandbox.sandbox
-          package-version: 1.0.0
+          owner: zionex
+          package-name: com.sap.sapjco
+          package-version: 3.1.7
           package-type: maven
