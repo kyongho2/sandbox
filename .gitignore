@@ -1,29 +1,36 @@
-### IntelliJ IDEA ###
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
-
-### Eclipse ###
-.apt_generated
+/.idea/
+/.java/
+/.oracle_jre_usage/
+/.run/
+/.settings/
+/.swt/
+/.vscode/
+/classes/
+/docs/**/mdbook-*.css
+/docs/**/mdbook-*.js
+/docs/**/mermaid*.js
+t3series-fp/config/personalization/
+t3series-wingui/src/main/webapp/js/bundle/
 .classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
-
-### Mac OS ###
-.DS_Store
+.history
+.java
+.jython_cache
+activemq-data
+book
+book.toml
+cachedir
+dist
+license.bin
+license.txt
+license.xml
+logs
+node_modules
+target
+t3series.auth
+yarn.lock
+*.class
+*.iml
+vendor.js
+realgrid.js
+main.js
+commons.bundle.js
